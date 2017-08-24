@@ -2,16 +2,172 @@
 
 
 [[projects]]
+  name = "github.com/aws/aws-sdk-go"
+  packages = ["aws","aws/awserr","aws/awsutil","aws/client","aws/client/metadata","aws/corehandlers","aws/credentials","aws/credentials/ec2rolecreds","aws/credentials/endpointcreds","aws/credentials/plugincreds","aws/credentials/stscreds","aws/defaults","aws/ec2metadata","aws/endpoints","aws/request","aws/session","aws/signer/v4","awsmigrate/awsmigrate-renamer/rename","awstesting","awstesting/integration","awstesting/integration/smoke","awstesting/mock","awstesting/unit","internal/shareddefaults","private/model/api","private/protocol","private/protocol/ec2query","private/protocol/json/jsonutil","private/protocol/jsonrpc","private/protocol/query","private/protocol/query/queryutil","private/protocol/rest","private/protocol/restjson","private/protocol/restxml","private/protocol/xml/xmlutil","private/signer/v2","private/util","service/acm","service/apigateway","service/applicationautoscaling","service/applicationdiscoveryservice","service/appstream","service/athena","service/autoscaling","service/batch","service/budgets","service/clouddirectory","service/cloudformation","service/cloudfront","service/cloudfront/sign","service/cloudhsm","service/cloudhsmv2","service/cloudsearch","service/cloudsearchdomain","service/cloudtrail","service/cloudwatch","service/cloudwatchevents","service/cloudwatchlogs","service/codebuild","service/codecommit","service/codedeploy","service/codepipeline","service/codestar","service/cognitoidentity","service/cognitoidentityprovider","service/cognitosync","service/configservice","service/costandusagereportservice","service/databasemigrationservice","service/datapipeline","service/dax","service/devicefarm","service/directconnect","service/directoryservice","service/dynamodb","service/dynamodb/dynamodbattribute","service/dynamodb/dynamodbiface","service/dynamodbstreams","service/ec2","service/ecr","service/ecs","service/efs","service/elasticache","service/elasticbeanstalk","service/elasticsearchservice","service/elastictranscoder","service/elb","service/elbv2","service/emr","service/firehose","service/gamelift","service/glacier","service/glue","service/greengrass","service/health","service/iam","service/inspector","service/iot","service/iotdataplane","service/kinesis","service/kinesisanalytics","service/kms","service/kms/kmsiface","service/lambda","service/lexmodelbuildingservice","service/lexruntimeservice","service/lightsail","service/machinelearning","service/marketplacecommerceanalytics","service/marketplaceentitlementservice","service/marketplacemetering","service/migrationhub","service/mobileanalytics","service/mturk","service/opsworks","service/opsworkscm","service/organizations","service/pinpoint","service/polly","service/rds","service/rds/rdsutils","service/redshift","service/rekognition","service/resourcegroupstaggingapi","service/route53","service/route53domains","service/s3","service/s3/s3crypto","service/s3/s3iface","service/s3/s3manager","service/servicecatalog","service/ses","service/sfn","service/shield","service/simpledb","service/sms","service/snowball","service/sns","service/sqs","service/sqs/sqsiface","service/ssm","service/storagegateway","service/sts","service/support","service/swf","service/waf","service/wafregional","service/workdocs","service/workspaces","service/xray"]
+  revision = "85193e1d8a4a2df2f00ccdcd6a796673b1aec368"
+  version = "v1.10.31"
+
+[[projects]]
+  name = "github.com/cpuguy83/go-md2man"
+  packages = ["md2man"]
+  revision = "a65d4d2de4d5f7c74868dfa9b202a3c8be315aaa"
+  version = "v1.0.6"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
+
+[[projects]]
+  name = "github.com/fsnotify/fsnotify"
+  packages = ["."]
+  revision = "629574ca2a5df945712d3079857300b5e4da0236"
+  version = "v1.4.2"
+
+[[projects]]
+  name = "github.com/go-ini/ini"
+  packages = ["."]
+  revision = "20b96f641a5ea98f2f8619ff4f3e061cff4833bd"
+  version = "v1.28.2"
+
+[[projects]]
+  name = "github.com/go-sql-driver/mysql"
+  packages = ["."]
+  revision = "a0583e0143b1624142adab07e0e97fe106d99561"
+  version = "v1.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/gopherjs/gopherjs"
+  packages = ["js"]
+  revision = "95deb33d587c9f6e24b494ea9bdf9648c48f9a60"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/gucumber/gucumber"
+  packages = [".","gherkin"]
+  revision = "71608e2f6e76fd4da5b09a376aeec7a5c0b5edbc"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hashicorp/hcl"
+  packages = [".","hcl/ast","hcl/parser","hcl/scanner","hcl/strconv","hcl/token","json/parser","json/scanner","json/token"]
+  revision = "8f6b1344a92ff8877cf24a5de9177bf7d0a2a187"
+
+[[projects]]
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
   revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
   version = "v1.0"
 
 [[projects]]
+  name = "github.com/jmespath/go-jmespath"
+  packages = ["."]
+  revision = "3433f3ea46d9f8019119e7dd41274e112a2359a9"
+  version = "0.2.2"
+
+[[projects]]
+  name = "github.com/jtolds/gls"
+  packages = ["."]
+  revision = "77f18212c9c7edc9bd6a33d383a7b545ce62f064"
+  version = "v4.2.1"
+
+[[projects]]
+  name = "github.com/magiconair/properties"
+  packages = ["."]
+  revision = "be5ece7dd465ab0765a9682137865547526d1dfb"
+  version = "v1.7.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/go-homedir"
+  packages = ["."]
+  revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  revision = "d0303fe809921458f417bcf828397a65db30a7e4"
+
+[[projects]]
+  name = "github.com/pelletier/go-buffruneio"
+  packages = ["."]
+  revision = "c37440a7cf42ac63b919c752ca73a85067e05992"
+  version = "v0.2.0"
+
+[[projects]]
+  name = "github.com/pelletier/go-toml"
+  packages = ["."]
+  revision = "5ccdfb18c776b740aecaf085c4d9a2779199c279"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/russross/blackfriday"
+  packages = ["."]
+  revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
+  version = "v2.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shiena/ansicolor"
+  packages = ["."]
+  revision = "a422bbe96644373c5753384a59d678f7d261ff10"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/shurcooL/sanitized_anchor_name"
+  packages = ["."]
+  revision = "541ff5ee47f1dddf6a5281af78307d921524bcb5"
+
+[[projects]]
+  name = "github.com/smartystreets/assertions"
+  packages = [".","internal/go-render/render","internal/oglematchers"]
+  revision = "e9a2f6771d97c709b2f7609fdf89ebde8b64c926"
+  version = "1.6.0"
+
+[[projects]]
+  name = "github.com/smartystreets/goconvey"
+  packages = ["convey","convey/gotest","convey/reporting"]
+  revision = "9e8dc3f972df6c8fcc0375ef492c24d0bb204857"
+  version = "1.6.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/afero"
+  packages = [".","mem"]
+  revision = "36f8810e2e3d7eeac4ac05b57f65690fbfba62a2"
+
+[[projects]]
+  name = "github.com/spf13/cast"
+  packages = ["."]
+  revision = "acbeb36b902d72a7a4c18e8f3241075e7ab763e4"
+  version = "v1.1.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/spf13/cobra"
-  packages = ["."]
+  packages = [".","cobra/cmd","doc"]
   revision = "2df9a531813370438a4d79bfc33e21f58063ed87"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/spf13/jwalterweatherman"
+  packages = ["."]
+  revision = "0efa5202c04663c757d84f90f5219c1250baf94f"
 
 [[projects]]
   name = "github.com/spf13/pflag"
@@ -19,9 +175,51 @@
   revision = "e57e3eeb33f795204c1ca35f56c44f83227c6e66"
   version = "v1.0.0"
 
+[[projects]]
+  name = "github.com/spf13/viper"
+  packages = ["."]
+  revision = "25b30aa063fc18e48662b86996252eabdcf2f0c7"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert","require"]
+  revision = "69483b4bd14f5845b5a1e55bca19e954e827f1d0"
+  version = "v1.1.4"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = ["html","html/atom","http2","http2/hpack","idna","lex/httplex"]
+  revision = "57efc9c3d9f91fb3277f8da1cff370539c4d3dc5"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  revision = "2d6f6f883a06fc0d5f4b14a81e4c28705ea64c15"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/text"
+  packages = ["internal/gen","internal/triegen","internal/ucd","secure/bidirule","transform","unicode/bidi","unicode/cldr","unicode/norm","unicode/rangetable"]
+  revision = "ac87088df8ef557f1e32cd00ed0b6fbc3f7ddafb"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/tools"
+  packages = ["go/ast/astutil","go/buildutil","go/loader"]
+  revision = "1807494da808122833b9bd8e3e5fa179ef237d41"
+
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "eb3733d160e74a9c7e442f435eb3bea458e1d19f"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fd56cc1810ff527dc29fa5ac153938af6d8df6a405c953638f1275f24d6073d9"
+  inputs-digest = "88c6073999734a38523ea57d98332976791db48024a2c0574b53f660ff6b1bab"
   solver-name = "gps-cdcl"
   solver-version = 1
