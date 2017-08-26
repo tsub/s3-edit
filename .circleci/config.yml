@@ -1,0 +1,79 @@
+version: 2
+jobs:
+  build:
+    docker: &docker
+      - image: docker:17.06-git
+    working_directory: /s3-edit
+    steps:
+      - setup_remote_docker: &setup_remote_docker
+          version: 17.06.0-ce
+      - run: &install_dependencies
+          name: Install dependencies
+          command: |
+            apk update
+
+            # ref: https://circleci.com/docs/2.0/custom-images/#required-tools
+            apk add --no-progress openssh tar gzip ca-certificates
+      - checkout
+      - run: &create_dummy_container
+          name: Create dummy container for mounting files and copy project files
+          command: |
+            # ref: https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+            docker create -v /go/src/github.com/tsub --name project busybox /bin/true
+            docker cp $PWD project:/go/src/github.com/tsub/s3-edit
+      - run:
+          name: Vendoring go packages
+          command: docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit supinf/go-dep ensure
+      - run:
+          name: Build binaries with cross compile
+          command: |
+            CURRENT_VERSION=$(git describe --tags --abbrev=0)
+
+            docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit pottava/gox:go1.8 -osarch="linux/amd64 linux/386 darwin/386 darwin/amd64" -output="build/{{.Dir}}_${CURRENT_VERSION}_{{.OS}}_{{.Arch}}"
+            docker cp project:/go/src/github.com/tsub/s3-edit/build $PWD/build
+      - persist_to_workspace:
+          root: /s3-edit
+          paths:
+            - build
+
+  deploy:
+    docker: *docker
+    working_directory: /s3-edit
+    steps:
+      - setup_remote_docker: *setup_remote_docker
+      - run: *install_dependencies
+      - checkout
+      - attach_workspace:
+          at: /s3-edit
+      - deploy:
+          name: Archive binaries
+          command: |
+            binaries=$(find build -mindepth 1 -maxdepth 1 -type f)
+
+            for binary in $binaries; do
+              tar -zvcf $binary.tar.gz $binary
+            done
+
+            rm -f $binaries
+      - deploy: *create_dummy_container
+      - deploy:
+          name: Release
+          command: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --volumes-from project -w /go/src/github.com/tsub/s3-edit tsub/ghr -username tsub -replace ${CIRCLE_TAG} build
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          # ref: https://circleci.com/docs/2.0/workflows/#git-tag-job-execution
+          filters:
+            tags:
+              only: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
