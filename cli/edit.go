@@ -32,7 +32,9 @@ func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {
 }
 
 func editFile(path string) string {
-	cmd := exec.Command("sh", "-c", "nvim " + path)
+	command := getDefaultEditor() + " " + path
+
+	cmd := exec.Command("sh", "-c", command)
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
 	cmd.Stdin = os.Stdin
@@ -48,4 +50,8 @@ func editFile(path string) string {
 	}
 
 	return string(changedFile[:])
+}
+
+func getDefaultEditor() string {
+	return os.Getenv("EDITOR")
 }
