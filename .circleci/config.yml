@@ -48,13 +48,13 @@ jobs:
       - deploy:
           name: Archive binaries
           command: |
-            binaries=$(find build -mindepth 1 -maxdepth 1 -type f)
+            binaries=$(ls build)
 
+            cd build
             for binary in $binaries; do
               tar -zvcf $binary.tar.gz $binary
+              rm -f $binary
             done
-
-            rm -f $binaries
       - deploy: *create_dummy_container
       - deploy:
           name: Release
