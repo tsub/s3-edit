@@ -15,7 +15,7 @@ $ go get -u github.com/tsub/s3-edit
 For macOS
 
 ```
-$ VERION=0.0.1
+$ VERION=0.0.2
 $ curl -fSL -o s3-edit.tar.gz "https://github.com/tsub/s3-edit/releases/download/v${VERSION}/s3-edit_v${VERSION}_darwin_amd64.tar.gz"
 $ tar -zxvf s3-edit.tar.gz
 $ mv build/s3-edit_v${VERSION}_darwin_amd64 /usr/local/bin/s3-edit
