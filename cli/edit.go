@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"strings"
 
 	myS3 "github.com/tsub/s3-edit/cli/s3"
 )
@@ -21,7 +22,9 @@ func Edit(path myS3.Path) {
 }
 
 func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {
-	tempfilePath = "/tmp/" + path.Key
+	keys := strings.Split(path.Key, "/")
+	fileName := keys[len(keys) - 1]
+	tempfilePath = "/tmp/" + fileName
 
 	if err := ioutil.WriteFile(tempfilePath, body, os.ModePerm); err != nil {
 		fmt.Println(err)
