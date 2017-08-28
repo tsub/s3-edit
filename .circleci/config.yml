@@ -29,7 +29,7 @@ jobs:
           command: |
             CURRENT_VERSION=$(git describe --tags --abbrev=0)
 
-            docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit pottava/gox:go1.8 -osarch="linux/amd64 linux/386 darwin/386 darwin/amd64" -output="build/{{.Dir}}_${CURRENT_VERSION}_{{.OS}}_{{.Arch}}"
+            docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit pottava/gox:go1.8 -osarch="linux/amd64 linux/386 darwin/386 darwin/amd64" -output="build/{{.OS}}_{{.Arch}}/{{.Dir}}"
             docker cp project:/go/src/github.com/tsub/s3-edit/build $PWD/build
       - persist_to_workspace:
           root: /s3-edit
@@ -48,12 +48,19 @@ jobs:
       - deploy:
           name: Archive binaries
           command: |
-            binaries=$(ls build)
+            binaryPaths=$(find build -mindepth 1 -maxdepth 1 -type d)
 
-            cd build
-            for binary in $binaries; do
-              tar -zvcf $binary.tar.gz $binary
-              rm -f $binary
+            for binaryPath in $binaryPaths; do
+              cd $binaryPath
+
+              archivePrefix=$(basename $binaryPath)
+              archiveName="s3-edit_${CIRCLE_TAG}_${archivePrefix}.tar.gz"
+              tar -zvcf $archiveName s3-edit
+
+              mv $archiveName ../
+
+              cd -
+              rm -rf $binaryPath
             done
       - deploy: *create_dummy_container
       - deploy:
