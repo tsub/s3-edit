@@ -23,7 +23,7 @@ func Edit(path myS3.Path) {
 
 func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {
 	keys := strings.Split(path.Key, "/")
-	fileName := keys[len(keys) - 1]
+	fileName := keys[len(keys)-1]
 	tempfilePath = "/tmp/" + fileName
 
 	if err := ioutil.WriteFile(tempfilePath, body, os.ModePerm); err != nil {

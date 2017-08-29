@@ -9,8 +9,8 @@ import (
 var editCmd = &cobra.Command{
 	Use:   "edit [S3 file path]",
 	Short: "Edit directly a file on S3",
-	Long: "Edit directly a file on S3",
-	Args: cobra.ExactArgs(1),
+	Long:  "Edit directly a file on S3",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		path := s3.ParsePath(args[0])
 		cli.Edit(path)

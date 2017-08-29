@@ -17,7 +17,7 @@ func ShowVersion() {
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version of s3-edit",
-	Long: "Print the version of s3-edit",
+	Long:  "Print the version of s3-edit",
 	Run: func(cmd *cobra.Command, args []string) {
 		ShowVersion()
 	},

@@ -25,9 +25,9 @@ func ParsePath(path string) Path {
 		os.Exit(1)
 	}
 
-	return Path {
+	return Path{
 		Bucket: parsedURL.Host,
-		Key: parsedURL.Path,
+		Key:    parsedURL.Path,
 	}
 }
 
