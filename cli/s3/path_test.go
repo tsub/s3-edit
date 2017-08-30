@@ -1,6 +1,7 @@
 package s3
 
 import (
+	"errors"
 	"testing"
 )
 
@@ -14,9 +15,28 @@ func TestParsePathSuccess(t *testing.T) {
 	}
 
 	for _, v := range validCases {
-		got := ParsePath(v.in)
+		got, _ := ParsePath(v.in)
 		if got != v.want {
 			t.Errorf("Reverse(%q) == %q, want %q", v.in, got, v.want)
+		}
+	}
+}
+
+func TestParsePathFailure(t *testing.T) {
+	var invalidCases = []struct{
+		in string
+		want error
+	}{
+		{"bucket/key", errors.New("invalid S3 Path")},
+		{"s3://", errors.New("invalid S3 Path")},
+		{"s3://bucket", errors.New("invalid S3 Path")},
+		{"s3://bucket/", errors.New("invalid S3 Path")},
+	}
+
+	for _, v := range invalidCases {
+		_, err := ParsePath(v.in)
+		if err == nil {
+			t.Errorf("Reverse(%q) == %q, want %q", v.in, err, v.want)
 		}
 	}
 }
