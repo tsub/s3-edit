@@ -6,8 +6,8 @@ import (
 )
 
 func TestParsePathSuccess(t *testing.T) {
-	var validCases = []struct{
-		in string
+	var validCases = []struct {
+		in   string
 		want Path
 	}{
 		{"s3://bucket/key", Path{Bucket: "bucket", Key: "/key"}},
@@ -23,8 +23,8 @@ func TestParsePathSuccess(t *testing.T) {
 }
 
 func TestParsePathFailure(t *testing.T) {
-	var invalidCases = []struct{
-		in string
+	var invalidCases = []struct {
+		in   string
 		want error
 	}{
 		{"bucket/key", errors.New("invalid S3 Path")},
