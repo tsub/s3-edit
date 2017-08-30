@@ -31,6 +31,8 @@ func TestParsePathFailure(t *testing.T) {
 		{"s3://", errors.New("invalid S3 Path")},
 		{"s3://bucket", errors.New("invalid S3 Path")},
 		{"s3://bucket/", errors.New("invalid S3 Path")},
+		{"s3://bucket/key/", errors.New("invalid S3 Path")},
+		{"http://bucket/key", errors.New("invalid S3 Path")},
 	}
 
 	for _, v := range invalidCases {

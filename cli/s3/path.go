@@ -3,6 +3,7 @@ package s3
 import (
 	"errors"
 	"net/url"
+	"strings"
 )
 
 // A Path have S3 bucket and key
@@ -29,5 +30,5 @@ func ParsePath(path string) (Path, error) {
 }
 
 func isInvalidS3Path(url url.URL) bool {
-	return url.Host == "" || url.Path == "" || url.Path == "/"
+	return url.Host == "" || url.Path == "" || url.Path == "/" || url.Scheme != "s3" || strings.HasSuffix(url.Path, "/")
 }
