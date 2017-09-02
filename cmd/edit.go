@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/spf13/cobra"
 	"github.com/tsub/s3-edit/cli"
 	"github.com/tsub/s3-edit/cli/s3"
@@ -12,7 +15,12 @@ var editCmd = &cobra.Command{
 	Long:  "Edit directly a file on S3",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		path := s3.ParsePath(args[0])
+		path, err := s3.ParsePath(args[0])
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
 		cli.Edit(path)
 	},
 }

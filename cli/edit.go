@@ -7,18 +7,23 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3"
 	myS3 "github.com/tsub/s3-edit/cli/s3"
 )
 
 // Edit directly a file on S3
 func Edit(path myS3.Path) {
-	body := myS3.GetObject(path)
+	sess := session.Must(session.NewSession())
+	svc := s3.New(sess)
+
+	body := myS3.GetObject(svc, path)
 
 	tempfilePath := createTempfile(path, body)
 	defer os.Remove(tempfilePath)
 
 	editedBody := editFile(tempfilePath)
-	myS3.PutObject(path, editedBody)
+	myS3.PutObject(svc, path, editedBody)
 }
 
 func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {

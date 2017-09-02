@@ -1,9 +1,9 @@
 package s3
 
 import (
-	"fmt"
+	"errors"
 	"net/url"
-	"os"
+	"strings"
 )
 
 // A Path have S3 bucket and key
@@ -13,24 +13,22 @@ type Path struct {
 }
 
 // ParsePath parse a file path of S3, and return Path struct
-func ParsePath(path string) Path {
+func ParsePath(path string) (Path, error) {
 	parsedURL, err := url.ParseRequestURI(path)
 	if err != nil {
-		fmt.Println("invalid S3 path")
-		os.Exit(1)
+		return Path{}, errors.New("invalid S3 Path")
 	}
 
 	if isInvalidS3Path(*parsedURL) {
-		fmt.Println("invalid S3 path")
-		os.Exit(1)
+		return Path{}, errors.New("invalid S3 Path")
 	}
 
 	return Path{
 		Bucket: parsedURL.Host,
 		Key:    parsedURL.Path,
-	}
+	}, nil
 }
 
 func isInvalidS3Path(url url.URL) bool {
-	return url.Host == "" || url.Path == "" || url.Path == "/"
+	return url.Host == "" || url.Path == "" || url.Path == "/" || url.Scheme != "s3" || strings.HasSuffix(url.Path, "/")
 }
