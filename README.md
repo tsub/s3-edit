@@ -15,13 +15,21 @@ Edit directly a file on Amazon S3.
 $ go get -u github.com/tsub/s3-edit
 ```
 
+### Install with Homebrew
+
+For only macOS
+
+```
+$ brew install tsub/s3-edit/s3-edit
+```
+
 ### Get binary from GitHub releases
 
-For macOS
+For Linux
 
 ```
 $ VERION=0.0.5
-$ curl -fSL -o s3-edit.tar.gz "https://github.com/tsub/s3-edit/releases/download/v${VERSION}/s3-edit_v${VERSION}_darwin_amd64.tar.gz"
+$ curl -fSL -o s3-edit.tar.gz "https://github.com/tsub/s3-edit/releases/download/v${VERSION}/s3-edit_v${VERSION}_linux_amd64.tar.gz"
 $ tar -zxvf s3-edit.tar.gz -C /usr/local/bin
 $ rm s3-edit.tar.gz
 ```
@@ -76,7 +84,7 @@ Edited with s3-edit.
 
 ## Future
 
-* [ ] Provide the Homebrew formula
+* [x] Provide the Homebrew formula
 * [ ] Add server-side encryption option
 
 ## Development
