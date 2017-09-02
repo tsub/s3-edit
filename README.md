@@ -2,6 +2,11 @@
 
 Edit directly a file on Amazon S3.
 
+[![GitHub release](https://img.shields.io/github/release/tsub/s3-edit.svg?style=flat-square)](https://github.com/tsub/s3-edit/releases)
+[![CircleCI branch](https://img.shields.io/circleci/project/github/tsub/s3-edit/master.svg?style=flat-square)](https://circleci.com/gh/tsub/s3-edit/tree/master)
+[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/tsub/s3-edit)
+[![MIT license](https://img.shields.io/github/license/tsub/s3-edit.svg?style=flat-square)](https://github.com/tsub/s3-edit/blob/master/LICENSE)
+
 ## Installation
 
 ### Use go get
