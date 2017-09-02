@@ -67,7 +67,9 @@ jobs:
             done
       - deploy:
           name: Create a SHASUMS file
-          command: sha256sum build/* > build/SHASUMS
+          command: |
+            cd build
+            sha256sum * > SHASUMS
       - deploy: *create_dummy_container
       - deploy:
           name: Release
