@@ -25,6 +25,9 @@ jobs:
           name: Vendoring go packages
           command: docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit supinf/go-dep ensure
       - run:
+          name: Run tests
+          command: docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit golang:1.9-alpine go test ./...
+      - run:
           name: Build binaries with cross compile
           command: |
             CURRENT_VERSION=$(git describe --tags --abbrev=0)
