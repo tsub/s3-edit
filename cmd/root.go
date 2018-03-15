@@ -31,7 +31,9 @@ func Execute() {
 }
 
 var isShowVersion bool
+var awsProfile string
 
 func init() {
 	RootCmd.Flags().BoolVarP(&isShowVersion, "version", "v", false, "print the version of s3-edit")
+	RootCmd.PersistentFlags().StringVarP(&awsProfile, "profile", "", "", "Use a specific profile from your credential file")
 }

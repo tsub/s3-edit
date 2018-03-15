@@ -21,7 +21,7 @@ var editCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		cli.Edit(path)
+		cli.Edit(path, awsProfile)
 	},
 }
 
