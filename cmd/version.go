@@ -7,7 +7,7 @@ import (
 )
 
 // Version is the version of s3-edit
-const Version = "0.0.5"
+const Version = "0.0.6"
 
 // ShowVersion print the version of s3-edit
 func ShowVersion() {
