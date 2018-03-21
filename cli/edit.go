@@ -7,15 +7,14 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	myS3 "github.com/tsub/s3-edit/cli/s3"
+	"github.com/tsub/s3-edit/config"
 )
 
 // Edit directly a file on S3
-func Edit(path myS3.Path) {
-	sess := session.Must(session.NewSession())
-	svc := s3.New(sess)
+func Edit(path myS3.Path, params *config.AWSParams) {
+	svc := s3.New(params.Session)
 
 	body := myS3.GetObject(svc, path)
 
