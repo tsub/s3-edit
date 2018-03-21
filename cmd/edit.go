@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/tsub/s3-edit/cli"
 	"github.com/tsub/s3-edit/cli/s3"
+	"github.com/tsub/s3-edit/config"
 )
 
 var editCmd = &cobra.Command{
@@ -21,7 +22,13 @@ var editCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		cli.Edit(path, awsProfile)
+		params, err := config.NewAWSParams(awsProfile)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
+		cli.Edit(path, params)
 	},
 }
 

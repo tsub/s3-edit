@@ -5,32 +5,16 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
-	"os/user"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	myS3 "github.com/tsub/s3-edit/cli/s3"
+	"github.com/tsub/s3-edit/config"
 )
 
 // Edit directly a file on S3
-func Edit(path myS3.Path, awsProfile string) {
-	var creds *credentials.Credentials
-	if awsProfile != "" {
-		currentUser, err := user.Current()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		creds = credentials.NewSharedCredentials(fmt.Sprintf("%s/.aws/credentials", currentUser.HomeDir), awsProfile)
-	}
-	sess := session.Must(session.NewSession(&aws.Config{
-		Credentials: creds,
-	}))
-	svc := s3.New(sess)
+func Edit(path myS3.Path, params *config.AWSParams) {
+	svc := s3.New(params.Session)
 
 	body := myS3.GetObject(svc, path)
 
