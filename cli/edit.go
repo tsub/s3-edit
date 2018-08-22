@@ -60,5 +60,9 @@ func editFile(path string) string {
 }
 
 func getDefaultEditor() string {
-	return os.Getenv("EDITOR")
+	editor := os.Getenv("EDITOR")
+	if editor == "" {
+		return "vi"
+	}
+	return editor
 }
