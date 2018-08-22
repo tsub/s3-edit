@@ -44,7 +44,6 @@ For examples, use aws-cli
 ```
 $ aws configure --profile myaccount
 $ export AWS_PROFILE=myaccount
-$ export AWS_REGION=ap-northeast-1
 ```
 
 Other methods,
