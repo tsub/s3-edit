@@ -5,15 +5,14 @@ builds:
   - CGO_ENABLED=0
 archive:
   replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
+    darwin: darwin
+    linux: linux
+    386: 386
+    amd64: amd64
 checksum:
-  name_template: 'checksums.txt'
+  name_template: 'SHASUMS'
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  name_template: "{{ .Tag }}"
 changelog:
   sort: asc
   filters:
