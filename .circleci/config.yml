@@ -3,7 +3,7 @@ jobs:
   build:
     docker: &docker
       - image: circleci/golang:1.9
-    working_directory: /s3-edit
+    working_directory: /go/src/github.com/tsub/s3-edit
     steps:
       - checkout
       - run: &vendoring
@@ -15,7 +15,7 @@ jobs:
 
   deploy:
     docker: *docker
-    working_directory: /s3-edit
+    working_directory: /go/src/github.com/tsub/s3-edit
     steps:
       - checkout
       - run: *vendoring
