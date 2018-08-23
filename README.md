@@ -1,6 +1,6 @@
 # s3-edit
 
-Edit directly a file on Amazon S3.
+Edit directly a file on Amazon S3 in CLI.
 
 [![GitHub release](https://img.shields.io/github/release/tsub/s3-edit.svg?style=flat-square)](https://github.com/tsub/s3-edit/releases)
 [![CircleCI branch](https://img.shields.io/circleci/project/github/tsub/s3-edit/master.svg?style=flat-square)](https://circleci.com/gh/tsub/s3-edit/tree/master)

@@ -29,6 +29,7 @@ brew:
   commit_author:
     name: goreleaserbot
     email: goreleaser@carlosbecker.com
+  description: "Edit directly a file on Amazon S3 in CLI"
   homepage: "https://github.com/tsub/s3-edit"
   install: |
     bin.install 's3-edit'
