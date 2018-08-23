@@ -2,78 +2,26 @@ version: 2
 jobs:
   build:
     docker: &docker
-      - image: docker:17.06-git
+      - image: circleci/golang:1.9
     working_directory: /s3-edit
     steps:
-      - setup_remote_docker: &setup_remote_docker
-          version: 17.06.0-ce
-      - run: &install_dependencies
-          name: Install dependencies
-          command: |
-            apk update
-
-            # ref: https://circleci.com/docs/2.0/custom-images/#required-tools
-            apk add --no-progress openssh tar gzip ca-certificates
       - checkout
-      - run: &create_dummy_container
-          name: Create dummy container for mounting files and copy project files
-          command: |
-            # ref: https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
-            docker create -v /go/src/github.com/tsub --name project busybox /bin/true
-            docker cp $PWD project:/go/src/github.com/tsub/s3-edit
-      - run:
+      - run: &vendoring
           name: Vendoring go packages
-          command: docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit supinf/go-dep ensure
+          command: dep ensure
       - run:
           name: Run tests
-          command: docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit golang:1.9-alpine go test ./...
-      - run:
-          name: Build binaries with cross compile
-          command: |
-            CURRENT_VERSION=$(git describe --tags --abbrev=0)
-
-            docker run --volumes-from project -w /go/src/github.com/tsub/s3-edit pottava/gox:go1.9 -osarch="linux/amd64 linux/386 darwin/386 darwin/amd64" -output="build/{{.OS}}_{{.Arch}}/{{.Dir}}"
-            docker cp project:/go/src/github.com/tsub/s3-edit/build $PWD/build
-      - persist_to_workspace:
-          root: /s3-edit
-          paths:
-            - build
+          command: go test ./...
 
   deploy:
     docker: *docker
     working_directory: /s3-edit
     steps:
-      - setup_remote_docker: *setup_remote_docker
-      - run: *install_dependencies
       - checkout
-      - attach_workspace:
-          at: /s3-edit
-      - deploy:
-          name: Archive binaries
-          command: |
-            binaryPaths=$(find build -mindepth 1 -maxdepth 1 -type d)
-
-            for binaryPath in $binaryPaths; do
-              cd $binaryPath
-
-              archivePrefix=$(basename $binaryPath)
-              archiveName="s3-edit_${CIRCLE_TAG}_${archivePrefix}.tar.gz"
-              tar -zvcf $archiveName s3-edit
-
-              mv $archiveName ../
-
-              cd -
-              rm -rf $binaryPath
-            done
-      - deploy:
-          name: Create a SHASUMS file
-          command: |
-            cd build
-            sha256sum * > SHASUMS
-      - deploy: *create_dummy_container
+      - run: *vendoring
       - deploy:
           name: Release
-          command: docker run -e GITHUB_TOKEN=$GITHUB_TOKEN --volumes-from project -w /go/src/github.com/tsub/s3-edit tsub/ghr -username tsub -replace ${CIRCLE_TAG} build
+          command: curl -sL https://git.io/goreleaser | bash
 
 workflows:
   version: 2
