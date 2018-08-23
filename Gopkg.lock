@@ -2,6 +2,7 @@
 
 
 [[projects]]
+  digest = "1:1b4a9db3b14d02409b0c2c498926b855b4597181a672827240ee2b9322ccae7f"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -29,44 +30,61 @@
     "private/protocol/xml/xmlutil",
     "service/s3",
     "service/s3/s3iface",
-    "service/sts"
+    "service/sts",
   ]
+  pruneopts = ""
   revision = "85193e1d8a4a2df2f00ccdcd6a796673b1aec368"
   version = "v1.10.31"
 
 [[projects]]
+  digest = "1:e26d0f8ccaf4087b93306d5e20e4816258116868ad6c6da0f2b4926c72fb92fa"
   name = "github.com/go-ini/ini"
   packages = ["."]
+  pruneopts = ""
   revision = "20b96f641a5ea98f2f8619ff4f3e061cff4833bd"
   version = "v1.28.2"
 
 [[projects]]
+  digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
+  pruneopts = ""
   revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
   version = "v1.0"
 
 [[projects]]
+  digest = "1:e6f0b9e4dced4b6b5fedb810e2125a9f74dfe2ef1598c55ecb25e8b3d8f514ea"
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
+  pruneopts = ""
   revision = "3433f3ea46d9f8019119e7dd41274e112a2359a9"
   version = "0.2.2"
 
 [[projects]]
   branch = "master"
+  digest = "1:c0862beafc0aeec30c4a0cfa4dfbc609ddabfd475c51e4b9abbb5e4c477f5357"
   name = "github.com/spf13/cobra"
   packages = ["."]
+  pruneopts = ""
   revision = "2df9a531813370438a4d79bfc33e21f58063ed87"
 
 [[projects]]
+  digest = "1:261bc565833ef4f02121450d74eb88d5ae4bd74bfe5d0e862cddb8550ec35000"
   name = "github.com/spf13/pflag"
   packages = ["."]
+  pruneopts = ""
   revision = "e57e3eeb33f795204c1ca35f56c44f83227c6e66"
   version = "v1.0.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "9e555afbf56507d7555790c781e676d0b056aafad0ee8da5ab8f6a881cdcbdb0"
+  input-imports = [
+    "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/session",
+    "github.com/aws/aws-sdk-go/service/s3",
+    "github.com/aws/aws-sdk-go/service/s3/s3iface",
+    "github.com/spf13/cobra",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
