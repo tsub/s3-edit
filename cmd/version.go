@@ -7,11 +7,11 @@ import (
 )
 
 // Version is the version of s3-edit
-const Version = "0.0.10"
+var Version = "dev"
 
 // ShowVersion print the version of s3-edit
 func ShowVersion() {
-	fmt.Printf("s3-edit version: v%s\n", Version)
+	fmt.Printf("s3-edit version: %s\n", Version)
 }
 
 var versionCmd = &cobra.Command{

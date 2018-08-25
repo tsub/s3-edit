@@ -1,6 +1,8 @@
 builds:
 - env:
   - CGO_ENABLED=0
+  ldflags:
+  - -s -w -X github.com/tsub/s3-edit/cmd.Version={{.Version}}
 
 archive:
   replacements:
