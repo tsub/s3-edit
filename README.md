@@ -25,14 +25,7 @@ $ brew install tsub/s3-edit/s3-edit
 
 ### Get binary from GitHub releases
 
-For Linux
-
-```
-$ VERSION=0.0.10
-$ curl -fSL -o s3-edit.tar.gz "https://github.com/tsub/s3-edit/releases/download/v${VERSION}/s3-edit_v${VERSION}_linux_amd64.tar.gz"
-$ tar -zxvf s3-edit.tar.gz -C /usr/local/bin
-$ rm s3-edit.tar.gz
-```
+Download binary from https://github.com/tsub/s3-edit/releases
 
 ## Requirements
 
