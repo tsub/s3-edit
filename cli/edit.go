@@ -16,13 +16,14 @@ import (
 func Edit(path myS3.Path, params *config.AWSParams) {
 	svc := s3.New(params.Session)
 
-	body := myS3.GetObject(svc, path)
+	object := myS3.GetObject(svc, path)
 
-	tempfilePath := createTempfile(path, body)
+	tempfilePath := createTempfile(path, object.Body)
 	defer os.Remove(tempfilePath)
 
 	editedBody := editFile(tempfilePath)
-	myS3.PutObject(svc, path, editedBody)
+	object.Body = []byte(editedBody)
+	myS3.PutObject(svc, path, object)
 }
 
 func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {
