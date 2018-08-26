@@ -4,15 +4,20 @@ import (
 	"bytes"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
+// Object has object body and metadata
+type Object struct {
+	Body        []byte
+	ContentType string
+}
+
 // GetObject download a file on S3
-func GetObject(svc s3iface.S3API, path Path) []byte {
+func GetObject(svc s3iface.S3API, path Path) Object {
 	input := &s3.GetObjectInput{
 		Bucket: aws.String(path.Bucket),
 		Key:    aws.String(path.Key),
@@ -28,15 +33,20 @@ func GetObject(svc s3iface.S3API, path Path) []byte {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	return buf.Bytes()
+
+	return Object{
+		Body:        buf.Bytes(),
+		ContentType: *res.ContentType,
+	}
 }
 
 // PutObject upload a file to S3
-func PutObject(svc s3iface.S3API, path Path, body string) {
+func PutObject(svc s3iface.S3API, path Path, object Object) {
 	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(strings.NewReader(body)),
-		Bucket: aws.String(path.Bucket),
-		Key:    aws.String(path.Key),
+		ContentType: aws.String(object.ContentType),
+		Body:        aws.ReadSeekCloser(bytes.NewReader(object.Body)),
+		Bucket:      aws.String(path.Bucket),
+		Key:         aws.String(path.Key),
 	}
 	if _, err := svc.PutObject(input); err != nil {
 		fmt.Println(err)
