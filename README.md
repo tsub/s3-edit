@@ -88,5 +88,6 @@ Edited with s3-edit.
 ### How to setup
 
 ```
-$ go get -u github.com/tsub/s3-edit
+$ git clone git@github.com:tsub/s3-edit.git
+$ export GO111MODULE=on
 ```

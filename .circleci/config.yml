@@ -3,22 +3,18 @@ jobs:
   build:
     docker: &docker
       - image: circleci/golang:1.11
-    working_directory: /go/src/github.com/tsub/s3-edit
+        environment:
+          GO111MODULE: "on"
     steps:
       - checkout
-      - run: &vendoring
-          name: Vendoring go packages
-          command: dep ensure
       - run:
           name: Run tests
           command: go test ./...
 
   deploy:
     docker: *docker
-    working_directory: /go/src/github.com/tsub/s3-edit
     steps:
       - checkout
-      - run: *vendoring
       - deploy:
           name: Release
           command: curl -sL https://git.io/goreleaser | bash
