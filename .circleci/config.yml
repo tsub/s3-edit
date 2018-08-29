@@ -7,6 +7,18 @@ jobs:
           GO111MODULE: "on"
     steps:
       - checkout
+      - restore_cache: &restore_cache
+          name: Restore go modules cache
+          keys:
+            - mod-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "go.mod" }}
+      - run: &vendoring
+          name: Vendoring
+          command: go mod download
+      - save_cache: &save_cache
+          name: Save go modules cache
+          key: mod-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "go.mod" }}
+          paths:
+            - /go/pkg/mod/cache
       - run:
           name: Run tests
           command: go test ./...
@@ -15,6 +27,9 @@ jobs:
     docker: *docker
     steps:
       - checkout
+      - restore_cache: *restore_cache
+      - run: *vendoring
+      - save_cache: *save_cache
       - run:
           name: Add missing and remove unused modules
           command: go mod tidy
