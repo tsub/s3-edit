@@ -83,12 +83,10 @@ Edited with s3-edit.
 
 ### Requirements
 
-* [dep](https://github.com/golang/dep)
+* Golang >= 1.11
 
 ### How to setup
 
 ```
 $ go get -u github.com/tsub/s3-edit
-$ cd $GOPATH/src/github.com/tsub/s3-edit
-$ dep ensure
 ```

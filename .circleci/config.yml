@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker: &docker
-      - image: circleci/golang:1.9
+      - image: circleci/golang:1.11
     working_directory: /go/src/github.com/tsub/s3-edit
     steps:
       - checkout
