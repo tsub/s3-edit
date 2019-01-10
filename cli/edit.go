@@ -18,18 +18,23 @@ func Edit(path myS3.Path, params *config.AWSParams) {
 
 	object := myS3.GetObject(svc, path)
 
-	tempfilePath := createTempfile(path, object.Body)
-	defer os.Remove(tempfilePath)
+	tempDirPath, tempfilePath := createTempfile(path, object.Body)
+	defer os.RemoveAll(tempDirPath)
 
 	editedBody := editFile(tempfilePath)
 	object.Body = []byte(editedBody)
 	myS3.PutObject(svc, path, object)
 }
 
-func createTempfile(path myS3.Path, body []byte) (tempfilePath string) {
+func createTempfile(path myS3.Path, body []byte) (tempDirPath string, tempfilePath string) {
+	tempDirPath, err := ioutil.TempDir("/tmp", "s3-edit")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 	keys := strings.Split(path.Key, "/")
 	fileName := keys[len(keys)-1]
-	tempfilePath = "/tmp/" + fileName
+	tempfilePath = tempDirPath + "/" + fileName
 
 	if err := ioutil.WriteFile(tempfilePath, body, os.ModePerm); err != nil {
 		fmt.Println(err)
