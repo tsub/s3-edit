@@ -17,7 +17,7 @@ $ go get -u github.com/tsub/s3-edit
 
 ### Install with Homebrew
 
-For only macOS
+For macOS and Linux
 
 ```
 $ brew install tsub/s3-edit/s3-edit
@@ -25,7 +25,7 @@ $ brew install tsub/s3-edit/s3-edit
 
 ### Get binary from GitHub releases
 
-Download binary from https://github.com/tsub/s3-edit/releases
+Download latest binary from https://github.com/tsub/s3-edit/releases
 
 ## Requirements
 
@@ -73,11 +73,6 @@ $ aws s3 cp s3://mybucket/myfile.txt -
 This is a test file.
 Edited with s3-edit.
 ```
-
-## Future
-
-* [x] Provide the Homebrew formula
-* [ ] Add server-side encryption option
 
 ## Development
 
