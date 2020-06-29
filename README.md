@@ -27,6 +27,12 @@ $ brew install tsub/s3-edit/s3-edit
 
 Download latest binary from https://github.com/tsub/s3-edit/releases
 
+### Using [Nix](https://nixos.org/)
+
+```
+$ nix-env -if default.nix
+```
+
 ## Requirements
 
 * AWS credentials
@@ -85,4 +91,12 @@ Edited with s3-edit.
 ```
 $ git clone git@github.com:tsub/s3-edit.git
 $ export GO111MODULE=on
+```
+
+### Using [Nix](https://nixos.org/)
+
+From the project root directory, this will enter you into a shell environment with s3-edit executable available, built from local source files.
+
+```
+$ nix-shell
 ```
