@@ -4,12 +4,12 @@ builds:
   ldflags:
   - -s -w -X github.com/tsub/s3-edit/cmd.Version={{.Version}}
 
-archive:
-  replacements:
-    darwin: darwin
-    linux: linux
-    386: 386
-    amd64: amd64
+archives:
+  - replacements:
+      darwin: darwin
+      linux: linux
+      386: "386"
+      amd64: amd64
 
 checksum:
   name_template: 'SHASUMS'
@@ -24,14 +24,14 @@ changelog:
     - '^docs:'
     - '^test:'
 
-brew:
-  github:
-    owner: tsub
-    name: homebrew-s3-edit
-  commit_author:
-    name: goreleaserbot
-    email: goreleaser@carlosbecker.com
-  description: "Edit directly a file on Amazon S3 in CLI"
-  homepage: "https://github.com/tsub/s3-edit"
-  install: |
-    bin.install 's3-edit'
+brews:
+  - tap:
+      owner: tsub
+      name: homebrew-s3-edit
+    commit_author:
+      name: goreleaserbot
+      email: goreleaser@carlosbecker.com
+    description: "Edit directly a file on Amazon S3 in CLI"
+    homepage: "https://github.com/tsub/s3-edit"
+    install: |
+      bin.install 's3-edit'
