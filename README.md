@@ -78,11 +78,4 @@ Edited with s3-edit.
 
 ### Requirements
 
-* Golang >= 1.11
-
-### How to setup
-
-```
-$ git clone git@github.com:tsub/s3-edit.git
-$ export GO111MODULE=on
-```
+* Golang >= 1.17
